@@ -1406,3 +1406,88 @@ button:active {
 .training-exercise + .timer-card {
   margin-top: 28px;
 }
+/* =========================================
+   COPOS DE ÁGUA
+========================================= */
+
+.water-cups {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 14px;
+  margin: 25px 0;
+}
+
+.water-cup {
+  height: 70px;
+  margin: 0;
+  border-radius: 16px;
+  background: #f3f4f6;
+  color: #6b7280;
+  border: 2px solid #e5e7eb;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 28px;
+  cursor: pointer;
+
+  transition:
+    transform 0.2s,
+    background 0.2s,
+    border-color 0.2s;
+}
+
+.water-cup:hover {
+  transform: translateY(-3px);
+  border-color: #60a5fa;
+}
+
+.water-cup.filled {
+  background: #dbeafe;
+  border-color: #2563eb;
+}
+
+.water-counter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  margin-bottom: 15px;
+}
+
+.water-counter strong {
+  font-size: 28px;
+  color: #2563eb;
+}
+
+.water-counter span {
+  color: #6b7280;
+  font-size: 13px;
+}
+
+.dark .water-cup {
+  background: #252c38;
+  border-color: #3b4555;
+  color: #aeb7c5;
+}
+
+.dark .water-cup.filled {
+  background: #172554;
+  border-color: #3b82f6;
+}
+
+.dark .water-counter span {
+  color: #aeb7c5;
+}
+
+@media (max-width: 550px) {
+  .water-cups {
+    gap: 8px;
+  }
+
+  .water-cup {
+    height: 60px;
+    font-size: 24px;
+  }
+}

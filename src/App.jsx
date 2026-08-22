@@ -96,9 +96,11 @@ function App() {
       nomeDia: 'Segunda',
       grupo: 'Peito + Tríceps',
       icone: '🟥',
+
       treino: {
         id: 'peito-a',
         nome: 'Peito A',
+
         exercicios: [
           {
             nome: 'Supino reto',
@@ -129,9 +131,11 @@ function App() {
       nomeDia: 'Terça',
       grupo: 'Costas + Bíceps',
       icone: '🟦',
+
       treino: {
         id: 'costas-a',
         nome: 'Costas A',
+
         exercicios: [
           {
             nome: 'Puxada frontal',
@@ -162,9 +166,11 @@ function App() {
       nomeDia: 'Quarta',
       grupo: 'Pernas',
       icone: '🟩',
+
       treino: {
         id: 'pernas-a',
         nome: 'Pernas A',
+
         exercicios: [
           {
             nome: 'Agachamento',
@@ -195,9 +201,11 @@ function App() {
       nomeDia: 'Quinta',
       grupo: 'Peito + Tríceps',
       icone: '🟥',
+
       treino: {
         id: 'peito-b',
         nome: 'Peito B',
+
         exercicios: [
           {
             nome: 'Supino com halteres',
@@ -228,9 +236,11 @@ function App() {
       nomeDia: 'Sexta',
       grupo: 'Costas + Bíceps',
       icone: '🟦',
+
       treino: {
         id: 'costas-b',
         nome: 'Costas B',
+
         exercicios: [
           {
             nome: 'Puxada aberta',
@@ -261,9 +271,11 @@ function App() {
       nomeDia: 'Sábado',
       grupo: 'Pernas',
       icone: '🟩',
+
       treino: {
         id: 'pernas-b',
         nome: 'Pernas B',
+
         exercicios: [
           {
             nome: 'Stiff',
@@ -715,16 +727,37 @@ function App() {
 
   function adicionarAgua() {
     setAgua(
-      valor => valor + 1
+      valor => {
+        if (valor >= metaAgua) {
+          return metaAgua
+        }
+
+        return valor + 1
+      }
     )
   }
 
   function removerAgua() {
-    if (agua > 0) {
-      setAgua(
-        valor => valor - 1
-      )
+    setAgua(
+      valor => {
+        if (valor <= 0) {
+          return 0
+        }
+
+        return valor - 1
+      }
+    )
+  }
+
+  function clicarCopo(
+    indice
+  ) {
+    if (indice < agua) {
+      setAgua(indice)
+      return
     }
+
+    setAgua(indice + 1)
   }
 
   const progressoAgua =
@@ -1108,7 +1141,7 @@ function App() {
       <main className="content">
 
         {/* =================================
-            TELA DE TREINO ABERTA
+            TELA DE TREINO
         ================================= */}
 
         {telaTreino &&
@@ -1742,30 +1775,68 @@ function App() {
 
             </div>
 
+            {/* ÁGUA */}
+
             <div className="card water-card">
 
               <h2>
                 💧 Hidratação
               </h2>
 
-              <div className="water-number">
-                {agua}
-              </div>
-
               <p>
-                de {metaAgua} copos
+                Toque nos copos para registrar sua água.
               </p>
 
-              <div className="progress-bar">
+              <div className="water-cups">
 
-                <div
-                  className="progress"
-                  style={{
-                    width:
-                      progressoAgua +
-                      '%'
-                  }}
-                />
+                {Array.from(
+                  {
+                    length: metaAgua
+                  }
+                ).map(
+                  (
+                    _,
+                    indice
+                  ) => {
+
+                    const cheio =
+                      indice < agua
+
+                    return (
+                      <button
+                        className={
+                          cheio
+                            ? 'water-cup filled'
+                            : 'water-cup'
+                        }
+                        key={
+                          indice
+                        }
+                        onClick={() =>
+                          clicarCopo(
+                            indice
+                          )
+                        }
+                      >
+                        {cheio
+                          ? '💧'
+                          : '⬜'}
+                      </button>
+                    )
+                  }
+                )}
+
+              </div>
+
+              <div className="water-counter">
+
+                <strong>
+                  {agua}/{metaAgua}
+                </strong>
+
+                <span>
+                  copos
+                </span>
 
               </div>
 
@@ -1812,7 +1883,9 @@ function App() {
 
             <div className="week-workouts">
 
-              {Object.keys(treinos).map(
+              {Object.keys(
+                treinos
+              ).map(
                 tipo => {
 
                   const treino =
@@ -1832,11 +1905,13 @@ function App() {
                       }
                       key={tipo}
                       onClick={() => {
+
                         if (
                           disponivel
                         ) {
                           abrirTreino()
                         }
+
                       }}
                     >
 
@@ -1992,6 +2067,94 @@ function App() {
 
                 )
               )}
+
+            </div>
+
+            {/* ÁGUA NA ALIMENTAÇÃO */}
+
+            <div className="card water-card">
+
+              <h2>
+                💧 Hidratação
+              </h2>
+
+              <p>
+                Toque nos copos para registrar sua água.
+              </p>
+
+              <div className="water-cups">
+
+                {Array.from(
+                  {
+                    length:
+                      metaAgua
+                  }
+                ).map(
+                  (
+                    _,
+                    indice
+                  ) => {
+
+                    const cheio =
+                      indice < agua
+
+                    return (
+                      <button
+                        className={
+                          cheio
+                            ? 'water-cup filled'
+                            : 'water-cup'
+                        }
+                        key={
+                          indice
+                        }
+                        onClick={() =>
+                          clicarCopo(
+                            indice
+                          )
+                        }
+                      >
+                        {cheio
+                          ? '💧'
+                          : '⬜'}
+                      </button>
+                    )
+                  }
+                )}
+
+              </div>
+
+              <div className="water-counter">
+
+                <strong>
+                  {agua}/{metaAgua}
+                </strong>
+
+                <span>
+                  copos
+                </span>
+
+              </div>
+
+              <div className="water-buttons">
+
+                <button
+                  onClick={
+                    removerAgua
+                  }
+                >
+                  −
+                </button>
+
+                <button
+                  onClick={
+                    adicionarAgua
+                  }
+                >
+                  + Adicionar
+                </button>
+
+              </div>
 
             </div>
 
