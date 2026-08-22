@@ -791,11 +791,55 @@ button:active {
 }
 
 /* =========================
+   PERFIL — IDADE E PESO
+========================= */
+
+.profile-info-box {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 24px;
+}
+
+.profile-info-box > div {
+  padding: 17px;
+  border-radius: 16px;
+  background: #f3f4f6;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+
+.profile-info-box span {
+  color: #6b7280;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.profile-info-box strong {
+  color: #172033;
+  font-size: 19px;
+  font-weight: 700;
+}
+
+.dark .profile-info-box > div {
+  background: #252c38;
+}
+
+.dark .profile-info-box span {
+  color: #94a3b8;
+}
+
+.dark .profile-info-box strong {
+  color: white;
+}
+
+/* =========================
    RESPONSIVO
 ========================= */
 
 @media (max-width: 1100px) {
-
   .stats {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -807,11 +851,9 @@ button:active {
   .statistics {
     grid-template-columns: repeat(2, 1fr);
   }
-
 }
 
 @media (max-width: 800px) {
-
   .sidebar {
     position: static;
     width: 100%;
@@ -847,11 +889,9 @@ button:active {
   .calendar {
     gap: 5px;
   }
-
 }
 
 @media (max-width: 550px) {
-
   .stats {
     grid-template-columns: 1fr;
   }
@@ -886,6 +926,10 @@ button:active {
     grid-template-columns: 1fr;
   }
 
+  .profile-info-box {
+    grid-template-columns: 1fr;
+  }
+
   .statistics {
     grid-template-columns: 1fr;
   }
@@ -893,8 +937,8 @@ button:active {
   .welcome h1 {
     font-size: 27px;
   }
-
 }
+
 /* =========================
    SÉRIES DO TREINO
 ========================= */
@@ -910,15 +954,11 @@ button:active {
   margin: 0;
   padding: 14px;
   border-radius: 12px;
-
   background: #e5e7eb;
   color: #172033;
-
   border: 2px solid #d1d5db;
-
   font-weight: bold;
   cursor: pointer;
-
   transition: 0.2s;
 }
 
@@ -983,6 +1023,7 @@ button:active {
     grid-template-columns: 1fr;
   }
 }
+
 /* =========================================
    TREINOS DA SEMANA
 ========================================= */
@@ -997,14 +1038,10 @@ button:active {
 .week-workout {
   min-height: 130px;
   padding: 24px;
-
   border-radius: 20px;
-
   display: flex;
   align-items: center;
-
   gap: 22px;
-
   transition: 0.2s;
 }
 
@@ -1012,14 +1049,12 @@ button:active {
   background: white;
   border: 2px solid #2563eb;
   cursor: pointer;
-
   box-shadow:
     0 8px 25px rgba(15, 23, 42, 0.07);
 }
 
 .week-workout.available:hover {
   transform: translateY(-4px);
-
   box-shadow:
     0 15px 30px rgba(37, 99, 235, 0.15);
 }
@@ -1027,26 +1062,19 @@ button:active {
 .week-workout.locked {
   background: #e5e7eb;
   border: 2px solid #d1d5db;
-
   opacity: 0.6;
-
   cursor: not-allowed;
 }
 
 .week-workout-icon {
   width: 60px;
   height: 60px;
-
   border-radius: 16px;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   background: #f3f4f6;
-
   font-size: 30px;
-
   flex-shrink: 0;
 }
 
@@ -1056,11 +1084,8 @@ button:active {
 
 .week-workout-info span {
   font-size: 11px;
-
   font-weight: 800;
-
   letter-spacing: 1px;
-
   color: #6b7280;
 }
 
@@ -1074,22 +1099,15 @@ button:active {
 
 .week-workout-status {
   padding: 10px 15px;
-
   border-radius: 10px;
-
   background: #eff6ff;
-
   color: #2563eb;
-
   font-size: 13px;
-
   font-weight: bold;
-
   white-space: nowrap;
 }
 
-.week-workout.locked
-.week-workout-status {
+.week-workout.locked .week-workout-status {
   background: #d1d5db;
   color: #6b7280;
 }
@@ -1106,60 +1124,46 @@ button:active {
 .back-training {
   background: transparent;
   color: #172033;
-
   padding: 8px 0;
-
   margin: 0 0 20px;
-
   font-size: 15px;
 }
 
 .back-training:hover {
   background: transparent;
   color: #2563eb;
-
   transform: translateX(-3px);
 }
 
 .training-header {
   padding: 32px;
-
   border-radius: 25px;
-
   background:
     linear-gradient(
       135deg,
       #172554,
       #312e81
     );
-
   color: white;
-
   margin-bottom: 25px;
-
   box-shadow:
     0 15px 35px rgba(30, 41, 59, 0.18);
 }
 
 .training-day {
   font-size: 12px;
-
   font-weight: 800;
-
   letter-spacing: 1px;
-
   color: #c7d2fe;
 }
 
 .training-icon {
   font-size: 55px;
-
   margin-top: 15px;
 }
 
 .training-header h1 {
   font-size: 36px;
-
   margin: 8px 0;
 }
 
@@ -1173,14 +1177,12 @@ button:active {
 
 .training-progress-top {
   display: flex;
-
   justify-content: space-between;
-
   margin-bottom: 8px;
 }
 
 .training-progress .progress-bar {
-  background: rgba(255,255,255,0.15);
+  background: rgba(255, 255, 255, 0.15);
 }
 
 .training-exercise {
@@ -1189,25 +1191,18 @@ button:active {
 
 .exercise-heading {
   display: flex;
-
   align-items: center;
-
   gap: 15px;
 }
 
 .exercise-icon {
   width: 55px;
   height: 55px;
-
   border-radius: 15px;
-
   background: #f3f4f6;
-
   display: flex;
-
   align-items: center;
   justify-content: center;
-
   font-size: 27px;
 }
 
@@ -1221,43 +1216,28 @@ button:active {
 
 .series-title {
   display: flex;
-
   justify-content: space-between;
-
   margin-top: 25px;
-
   margin-bottom: 10px;
 }
 
 .series-buttons {
   display: grid;
-
-  grid-template-columns:
-    repeat(4, 1fr);
-
+  grid-template-columns: repeat(4, 1fr);
   gap: 12px;
-
   margin-bottom: 18px;
 }
 
 .serie-button {
   height: 65px;
-
   margin: 0;
-
   background: #f3f4f6;
-
   color: #172033;
-
   border: 2px solid #e5e7eb;
-
   display: flex;
-
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
-
   gap: 3px;
 }
 
@@ -1268,9 +1248,7 @@ button:active {
 
 .serie-button.feita {
   background: #22c55e;
-
   border-color: #16a34a;
-
   color: white;
 }
 
@@ -1284,15 +1262,10 @@ button:active {
 
 .exercise-done {
   padding: 12px;
-
   border-radius: 10px;
-
   background: #dcfce7;
-
   color: #166534;
-
   font-weight: bold;
-
   margin-bottom: 12px;
 }
 
@@ -1306,7 +1279,6 @@ button:active {
 
 .finish-icon {
   font-size: 55px;
-
   margin-bottom: 8px;
 }
 
@@ -1364,22 +1336,18 @@ button:active {
 ========================================= */
 
 @media (max-width: 650px) {
-
   .week-workout {
     align-items: flex-start;
-
     flex-wrap: wrap;
   }
 
   .week-workout-status {
     width: 100%;
-
     text-align: center;
   }
 
   .series-buttons {
-    grid-template-columns:
-      repeat(2, 1fr);
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .training-header {
@@ -1390,6 +1358,7 @@ button:active {
     font-size: 28px;
   }
 }
+
 /* =========================================
    INTERVALO ENTRE AS SÉRIES
 ========================================= */
@@ -1403,9 +1372,11 @@ button:active {
   align-items: center;
   justify-content: center;
 }
+
 .training-exercise + .timer-card {
   margin-top: 28px;
 }
+
 /* =========================================
    COPOS DE ÁGUA
 ========================================= */
@@ -1424,11 +1395,9 @@ button:active {
   background: #f3f4f6;
   color: #6b7280;
   border: 2px solid #e5e7eb;
-
   display: flex;
   align-items: center;
   justify-content: center;
-
   font-size: 28px;
   cursor: pointer;
 
@@ -1489,5 +1458,190 @@ button:active {
   .water-cup {
     height: 60px;
     font-size: 24px;
+  }
+}
+
+/* =========================================
+   ALIMENTAÇÃO RECOMENDADA
+========================================= */
+
+.recommended-food {
+  margin: 25px 0;
+  padding: 26px;
+  border-radius: 24px;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  box-shadow:
+    0 10px 25px rgba(15, 23, 42, 0.06);
+
+  font-family:
+    "Segoe UI",
+    Arial,
+    Helvetica,
+    sans-serif;
+}
+
+.recommended-header {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 22px;
+}
+
+.recommended-header > span {
+  width: 52px;
+  height: 52px;
+  border-radius: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #eff6ff;
+  font-size: 25px;
+  flex-shrink: 0;
+}
+
+.recommended-header h2 {
+  margin: 0 0 5px;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+  color: #172033;
+}
+
+.recommended-header p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.food-cards {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+}
+
+.food-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  padding: 19px;
+  border-radius: 18px;
+  background: #f8fafc;
+  border: 1px solid #e5e7eb;
+  transition:
+    transform 0.2s,
+    border-color 0.2s,
+    box-shadow 0.2s;
+}
+
+.food-card:hover {
+  transform: translateY(-2px);
+  border-color: #bfdbfe;
+  box-shadow:
+    0 8px 18px rgba(15, 23, 42, 0.05);
+}
+
+.food-icon {
+  width: 46px;
+  height: 46px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  font-size: 23px;
+}
+
+.food-card h3 {
+  margin: 1px 0 7px;
+
+  font-family:
+    "Segoe UI",
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.15px;
+  color: #172033;
+}
+
+.food-card p {
+  margin: 0;
+
+  color: #6b7280;
+
+  font-family:
+    "Segoe UI",
+    Arial,
+    Helvetica,
+    sans-serif;
+
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.55;
+}
+
+/* =========================
+   MODO ESCURO
+========================= */
+
+.dark .recommended-food {
+  background: #181e29;
+  border-color: #2f3948;
+}
+
+.dark .recommended-header h2 {
+  color: white;
+}
+
+.dark .recommended-header p,
+.dark .food-card p {
+  color: #94a3b8;
+}
+
+.dark .recommended-header > span,
+.dark .food-icon {
+  background: #252c38;
+}
+
+.dark .food-card {
+  background: #252c38;
+  border-color: #3b4555;
+}
+
+.dark .food-card h3 {
+  color: white;
+}
+
+/* =========================
+   CELULAR — ALIMENTAÇÃO
+========================= */
+
+@media (max-width: 700px) {
+  .food-cards {
+    grid-template-columns: 1fr;
+  }
+
+  .recommended-food {
+    padding: 19px;
+  }
+
+  .recommended-header h2 {
+    font-size: 21px;
+  }
+
+  .food-card h3 {
+    font-size: 16px;
+  }
+
+  .food-card p {
+    font-size: 13px;
   }
 }

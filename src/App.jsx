@@ -9,6 +9,14 @@ function App() {
     localStorage.getItem('nome') || 'Aluno'
   )
 
+  const [idade, setIdade] = useState(
+    localStorage.getItem('idade') || ''
+  )
+
+  const [peso, setPeso] = useState(
+    localStorage.getItem('peso') || ''
+  )
+
   const [xp, setXp] = useState(
     Number(localStorage.getItem('xp')) || 0
   )
@@ -347,6 +355,20 @@ function App() {
 
   useEffect(() => {
     localStorage.setItem(
+      'idade',
+      idade
+    )
+  }, [idade])
+
+  useEffect(() => {
+    localStorage.setItem(
+      'peso',
+      peso
+    )
+  }, [peso])
+
+  useEffect(() => {
+    localStorage.setItem(
       'xp',
       xp
     )
@@ -658,7 +680,8 @@ function App() {
   const progressoXP =
     Math.round(
       (
-        xpAtual / 500
+        xpAtual /
+        500
       ) * 100
     )
 
@@ -679,6 +702,14 @@ function App() {
   if (nivel >= 10) {
     titulo = 'Lenda'
   }
+
+  // =========================================
+  // PERFIL PREENCHIDO
+  // =========================================
+
+  const perfilPreenchido =
+    idade !== '' &&
+    peso !== ''
 
   // =========================================
   // ALIMENTAÇÃO
@@ -759,17 +790,6 @@ function App() {
 
     setAgua(indice + 1)
   }
-
-  const progressoAgua =
-    Math.min(
-      100,
-      Math.round(
-        (
-          agua /
-          metaAgua
-        ) * 100
-      )
-    )
 
   // =========================================
   // SEMANA
@@ -1060,6 +1080,31 @@ function App() {
     metasDia.filter(
       meta => meta.feito
     ).length
+
+  // =========================================
+  // SALVAR PERFIL
+  // =========================================
+
+  function salvarPerfil() {
+    localStorage.setItem(
+      'nome',
+      nome
+    )
+
+    localStorage.setItem(
+      'idade',
+      idade
+    )
+
+    localStorage.setItem(
+      'peso',
+      peso
+    )
+
+    alert(
+      'Perfil salvo com sucesso! ✅'
+    )
+  }
 
   // =========================================
   // RENDER
@@ -1998,6 +2043,143 @@ function App() {
               Acompanhe suas refeições.
             </p>
 
+            {perfilPreenchido && (
+
+              <div className="recommended-food">
+
+                <div className="recommended-header">
+
+                  <span>
+                    ✨
+                  </span>
+
+                  <div>
+
+                    <h2>
+                      Alimentação recomendada
+                    </h2>
+
+                    <p>
+                      Sugestões gerais para uma alimentação variada.
+                    </p>
+
+                  </div>
+
+                </div>
+
+                <div className="food-cards">
+
+                  <div className="food-card">
+
+                    <span className="food-icon">
+                      🌅
+                    </span>
+
+                    <div>
+
+                      <h3>
+                        Café da manhã
+                      </h3>
+
+                      <p>
+                        Frutas, cereais e uma fonte de proteína.
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                  <div className="food-card">
+
+                    <span className="food-icon">
+                      🍛
+                    </span>
+
+                    <div>
+
+                      <h3>
+                        Almoço
+                      </h3>
+
+                      <p>
+                        Arroz, feijão, vegetais e uma fonte de proteína.
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                  <div className="food-card">
+
+                    <span className="food-icon">
+                      🍎
+                    </span>
+
+                    <div>
+
+                      <h3>
+                        Lanche
+                      </h3>
+
+                      <p>
+                        Fruta, iogurte ou outra combinação variada.
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                  <div className="food-card">
+
+                    <span className="food-icon">
+                      🌙
+                    </span>
+
+                    <div>
+
+                      <h3>
+                        Jantar
+                      </h3>
+
+                      <p>
+                        Uma refeição variada com diferentes grupos de alimentos.
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                </div>
+
+              </div>
+
+            )}
+
+            {!perfilPreenchido && (
+
+              <div className="card">
+
+                <h2>
+                  👤 Complete seu perfil
+                </h2>
+
+                <p>
+                  Preencha sua idade e seu peso na aba Perfil para liberar esta seção.
+                </p>
+
+                <button
+                  className="main-button"
+                  onClick={() =>
+                    setTela('perfil')
+                  }
+                >
+                  Ir para meu perfil →
+                </button>
+
+              </div>
+
+            )}
+
             <div className="card">
 
               <h2>
@@ -2327,6 +2509,10 @@ function App() {
               👤 Meu perfil
             </h1>
 
+            <p>
+              Complete seus dados para personalizar seu perfil.
+            </p>
+
             <div className="profile-card">
 
               <div className="avatar">
@@ -2334,23 +2520,93 @@ function App() {
               </div>
 
               <h2>
-                {nome}
+                {nome || 'Seu nome'}
               </h2>
 
-              <label>
-                Seu nome
-              </label>
+              <div className="profile-form">
 
-              <input
-                type="text"
-                value={nome}
-                onChange={
-                  evento =>
-                    setNome(
-                      evento.target.value
-                    )
-                }
-              />
+                <div className="profile-field">
+
+                  <label>
+                    Nome
+                  </label>
+
+                  <input
+                    type="text"
+                    value={nome}
+                    placeholder="Digite seu nome"
+                    onChange={
+                      evento =>
+                        setNome(
+                          evento.target.value
+                        )
+                    }
+                  />
+
+                </div>
+
+                <div className="profile-field">
+
+                  <label>
+                    Idade
+                  </label>
+
+                  <input
+                    type="number"
+                    min="1"
+                    max="120"
+                    value={idade}
+                    placeholder="Digite sua idade"
+                    onChange={
+                      evento =>
+                        setIdade(
+                          evento.target.value
+                        )
+                    }
+                  />
+
+                </div>
+
+                <div className="profile-field">
+
+                  <label>
+                    Peso
+                  </label>
+
+                  <div className="weight-input">
+
+                    <input
+                      type="number"
+                      min="1"
+                      step="0.1"
+                      value={peso}
+                      placeholder="Digite seu peso"
+                      onChange={
+                        evento =>
+                          setPeso(
+                            evento.target.value
+                          )
+                      }
+                    />
+
+                    <span>
+                      kg
+                    </span>
+
+                  </div>
+
+                </div>
+
+                <button
+                  className="save-profile-button"
+                  onClick={
+                    salvarPerfil
+                  }
+                >
+                  💾 Salvar perfil
+                </button>
+
+              </div>
 
               <div className="profile-stats">
 
@@ -2391,6 +2647,46 @@ function App() {
                 </div>
 
               </div>
+
+              {(idade || peso) && (
+
+                <div className="profile-info-box">
+
+                  {idade && (
+
+                    <div>
+
+                      <span>
+                        🎂 Idade
+                      </span>
+
+                      <strong>
+                        {idade} anos
+                      </strong>
+
+                    </div>
+
+                  )}
+
+                  {peso && (
+
+                    <div>
+
+                      <span>
+                        ⚖️ Peso
+                      </span>
+
+                      <strong>
+                        {peso} kg
+                      </strong>
+
+                    </div>
+
+                  )}
+
+                </div>
+
+              )}
 
             </div>
 
