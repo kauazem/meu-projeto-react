@@ -1,0 +1,43 @@
+.progress-card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  margin-bottom: 25px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.progress-card h3 {
+  margin-bottom: 15px;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 18px;
+  background: #e5e7eb;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-bottom: 10px;
+}
+
+.progress {
+  height: 100%;
+  background: #22c55e;
+  border-radius: 20px;
+  transition: width 0.4s ease;
+}
+
+.completed {
+  margin-top: 25px;
+  padding: 25px;
+  background: #dcfce7;
+  border-radius: 15px;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.completed p {
+  margin-top: 10px;
+  font-size: 16px;
+  font-weight: normal;
+}
