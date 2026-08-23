@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import './App.css'
 
-function App() {
+export default function App() {
   const [tela, setTela] = useState('inicio')
   const [telaTreino, setTelaTreino] = useState(false)
 
@@ -49,9 +49,7 @@ function App() {
     useState(() => {
       try {
         return JSON.parse(
-          localStorage.getItem(
-            'seriesConcluidas'
-          ) || '{}'
+          localStorage.getItem('seriesConcluidas') || '{}'
         )
       } catch {
         return {}
@@ -60,8 +58,7 @@ function App() {
 
   const [refeicoes, setRefeicoes] = useState(() => {
     try {
-      const salvas =
-        localStorage.getItem('refeicoes')
+      const salvas = localStorage.getItem('refeicoes')
 
       if (salvas) {
         return JSON.parse(salvas)
@@ -343,6 +340,27 @@ function App() {
       : null
 
   // =========================================
+  // TROCAR DE ABA
+  // =========================================
+
+  function mudarTela(novaTela) {
+    setTela(novaTela)
+    setTelaTreino(false)
+
+    setTimeout(() => {
+      const topoAba =
+        document.getElementById('topo-aba')
+
+      if (topoAba) {
+        topoAba.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+      }
+    }, 50)
+  }
+
+  // =========================================
   // SALVAMENTO
   // =========================================
 
@@ -444,11 +462,23 @@ function App() {
       return
     }
 
-    setTelaTreino(true)
     setTela('treinos')
+    setTelaTreino(true)
 
     setTempo(15)
     setRodando(false)
+
+    setTimeout(() => {
+      const topoAba =
+        document.getElementById('topo-aba')
+
+      if (topoAba) {
+        topoAba.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+      }
+    }, 50)
   }
 
   // =========================================
@@ -458,6 +488,18 @@ function App() {
   function fecharTreino() {
     setTelaTreino(false)
     setRodando(false)
+
+    setTimeout(() => {
+      const topoAba =
+        document.getElementById('topo-aba')
+
+      if (topoAba) {
+        topoAba.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+      }
+    }, 50)
   }
 
   // =========================================
@@ -607,17 +649,15 @@ function App() {
     }
   }
 
-  let porcentagemTreino = 0
-
-  if (totalSeries > 0) {
-    porcentagemTreino =
-      Math.round(
-        (
-          seriesFeitas /
-          totalSeries
-        ) * 100
-      )
-  }
+  const porcentagemTreino =
+    totalSeries > 0
+      ? Math.round(
+          (
+            seriesFeitas /
+            totalSeries
+          ) * 100
+        )
+      : 0
 
   const treinoCompleto =
     treinoAberto !== null &&
@@ -625,7 +665,7 @@ function App() {
     seriesFeitas >= totalSeries
 
   // =========================================
-  // XP DO TREINO
+  // XP
   // =========================================
 
   const identificadorXP =
@@ -700,12 +740,29 @@ function App() {
   }
 
   // =========================================
-  // PERFIL PREENCHIDO
+  // PERFIL
   // =========================================
 
   const perfilPreenchido =
     idade !== '' &&
     peso !== ''
+
+  function salvarPerfil() {
+    localStorage.setItem(
+      'nome',
+      nome
+    )
+
+    localStorage.setItem(
+      'idade',
+      idade
+    )
+
+    localStorage.setItem(
+      'peso',
+      peso
+    )
+  }
 
   // =========================================
   // ALIMENTAÇÃO
@@ -1078,25 +1135,41 @@ function App() {
     ).length
 
   // =========================================
-  // SALVAR PERFIL
+  // CABEÇALHO MOBILE
   // =========================================
 
-  function salvarPerfil() {
-    localStorage.setItem(
-      'nome',
-      nome
-    )
+  const iconeTela =
+    tela === 'inicio'
+      ? '🏠'
+      : tela === 'treinos'
+        ? '🏋️'
+        : tela === 'alimentacao'
+          ? '🍎'
+          : tela === 'progresso'
+            ? '📈'
+            : '👤'
 
-    localStorage.setItem(
-      'idade',
-      idade
-    )
+  const tituloTela =
+    tela === 'inicio'
+      ? 'Início'
+      : tela === 'treinos'
+        ? 'Treinos'
+        : tela === 'alimentacao'
+          ? 'Alimentação'
+          : tela === 'progresso'
+            ? 'Progresso'
+            : 'Perfil'
 
-    localStorage.setItem(
-      'peso',
-      peso
-    )
-  }
+  const subtituloTela =
+    tela === 'inicio'
+      ? 'Seu painel de evolução'
+      : tela === 'treinos'
+        ? 'Seus treinos da semana'
+        : tela === 'alimentacao'
+          ? 'Sua alimentação'
+          : tela === 'progresso'
+            ? 'Acompanhe sua evolução'
+            : 'Seus dados pessoais'
 
   // =========================================
   // RENDER
@@ -1125,7 +1198,7 @@ function App() {
 
         <button
           onClick={() =>
-            setTela('inicio')
+            mudarTela('inicio')
           }
         >
           🏠 Início
@@ -1133,7 +1206,7 @@ function App() {
 
         <button
           onClick={() =>
-            setTela('treinos')
+            mudarTela('treinos')
           }
         >
           🏋️ Treinos
@@ -1141,7 +1214,7 @@ function App() {
 
         <button
           onClick={() =>
-            setTela('alimentacao')
+            mudarTela('alimentacao')
           }
         >
           🍎 Alimentação
@@ -1149,7 +1222,7 @@ function App() {
 
         <button
           onClick={() =>
-            setTela('progresso')
+            mudarTela('progresso')
           }
         >
           📈 Progresso
@@ -1157,7 +1230,7 @@ function App() {
 
         <button
           onClick={() =>
-            setTela('perfil')
+            mudarTela('perfil')
           }
         >
           👤 Perfil
@@ -1175,7 +1248,137 @@ function App() {
 
       </aside>
 
+      {/* NAVEGAÇÃO MOBILE */}
+
+      <nav className="mobile-nav">
+
+        <button
+          className={
+            tela === 'inicio' &&
+            !telaTreino
+              ? 'mobile-nav-button active'
+              : 'mobile-nav-button'
+          }
+          onClick={() =>
+            mudarTela('inicio')
+          }
+        >
+          <span>
+            🏠
+          </span>
+
+          <small>
+            Início
+          </small>
+        </button>
+
+        <button
+          className={
+            tela === 'treinos'
+              ? 'mobile-nav-button active'
+              : 'mobile-nav-button'
+          }
+          onClick={() =>
+            mudarTela('treinos')
+          }
+        >
+          <span>
+            🏋️
+          </span>
+
+          <small>
+            Treinos
+          </small>
+        </button>
+
+        <button
+          className={
+            tela === 'alimentacao'
+              ? 'mobile-nav-button active'
+              : 'mobile-nav-button'
+          }
+          onClick={() =>
+            mudarTela('alimentacao')
+          }
+        >
+          <span>
+            🍎
+          </span>
+
+          <small>
+            Alimentação
+          </small>
+        </button>
+
+        <button
+          className={
+            tela === 'progresso'
+              ? 'mobile-nav-button active'
+              : 'mobile-nav-button'
+          }
+          onClick={() =>
+            mudarTela('progresso')
+          }
+        >
+          <span>
+            📈
+          </span>
+
+          <small>
+            Progresso
+          </small>
+        </button>
+
+        <button
+          className={
+            tela === 'perfil'
+              ? 'mobile-nav-button active'
+              : 'mobile-nav-button'
+          }
+          onClick={() =>
+            mudarTela('perfil')
+          }
+        >
+          <span>
+            👤
+          </span>
+
+          <small>
+            Perfil
+          </small>
+        </button>
+
+      </nav>
+
       <main className="content">
+
+        {/* PONTO DE RETORNO DA ABA */}
+
+        <div id="topo-aba"></div>
+
+        {/* CABEÇALHO MOBILE */}
+
+        {!telaTreino && (
+          <div className="mobile-page-header">
+
+            <div className="mobile-page-icon">
+              {iconeTela}
+            </div>
+
+            <div>
+
+              <h2>
+                {tituloTela}
+              </h2>
+
+              <p>
+                {subtituloTela}
+              </p>
+
+            </div>
+
+          </div>
+        )}
 
         {/* =================================
             TELA DE TREINO
@@ -1291,7 +1494,9 @@ function App() {
                           ? 'card completed-exercise training-exercise'
                           : 'card training-exercise'
                       }
-                      key={indice}
+                      key={
+                        indice
+                      }
                     >
 
                       <div className="exercise-heading">
@@ -1540,9 +1745,13 @@ function App() {
             <div className="stats">
 
               <div className="stat-card">
-                <span>🔥</span>
+
+                <span>
+                  🔥
+                </span>
 
                 <div>
+
                   <strong>
                     {quantidadeTreinos}
                   </strong>
@@ -1550,13 +1759,19 @@ function App() {
                   <p>
                     Treinos
                   </p>
+
                 </div>
+
               </div>
 
               <div className="stat-card">
-                <span>⭐</span>
+
+                <span>
+                  ⭐
+                </span>
 
                 <div>
+
                   <strong>
                     {xp}
                   </strong>
@@ -1564,13 +1779,19 @@ function App() {
                   <p>
                     XP
                   </p>
+
                 </div>
+
               </div>
 
               <div className="stat-card">
-                <span>🔥</span>
+
+                <span>
+                  🔥
+                </span>
 
                 <div>
+
                   <strong>
                     {sequencia}
                   </strong>
@@ -1578,13 +1799,19 @@ function App() {
                   <p>
                     Dias seguidos
                   </p>
+
                 </div>
+
               </div>
 
               <div className="stat-card">
-                <span>🏆</span>
+
+                <span>
+                  🏆
+                </span>
 
                 <div>
+
                   <strong>
                     {conquistasDesbloqueadas}
                   </strong>
@@ -1592,7 +1819,9 @@ function App() {
                   <p>
                     Conquistas
                   </p>
+
                 </div>
+
               </div>
 
             </div>
@@ -1788,8 +2017,6 @@ function App() {
 
             </div>
 
-            {/* ÁGUA */}
-
             <div className="card water-card">
 
               <h2>
@@ -1804,7 +2031,8 @@ function App() {
 
                 {Array.from(
                   {
-                    length: metaAgua
+                    length:
+                      metaAgua
                   }
                 ).map(
                   (
@@ -1961,7 +2189,6 @@ function App() {
                       </div>
 
                     </div>
-
                   )
                 }
               )}
@@ -2404,7 +2631,7 @@ function App() {
                 <button
                   className="main-button"
                   onClick={() =>
-                    setTela('perfil')
+                    mudarTela('perfil')
                   }
                 >
                   Ir para meu perfil →
@@ -2932,5 +3159,3 @@ function App() {
     </div>
   )
 }
-
-export default App
