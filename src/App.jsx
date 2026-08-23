@@ -398,18 +398,14 @@ function App() {
   useEffect(() => {
     localStorage.setItem(
       'seriesConcluidas',
-      JSON.stringify(
-        seriesConcluidas
-      )
+      JSON.stringify(seriesConcluidas)
     )
   }, [seriesConcluidas])
 
   useEffect(() => {
     localStorage.setItem(
       'refeicoes',
-      JSON.stringify(
-        refeicoes
-      )
+      JSON.stringify(refeicoes)
     )
   }, [refeicoes])
 
@@ -1100,10 +1096,6 @@ function App() {
       'peso',
       peso
     )
-
-    alert(
-      'Perfil salvo com sucesso! ✅'
-    )
   }
 
   // =========================================
@@ -1548,13 +1540,9 @@ function App() {
             <div className="stats">
 
               <div className="stat-card">
-
-                <span>
-                  🔥
-                </span>
+                <span>🔥</span>
 
                 <div>
-
                   <strong>
                     {quantidadeTreinos}
                   </strong>
@@ -1562,19 +1550,13 @@ function App() {
                   <p>
                     Treinos
                   </p>
-
                 </div>
-
               </div>
 
               <div className="stat-card">
-
-                <span>
-                  ⭐
-                </span>
+                <span>⭐</span>
 
                 <div>
-
                   <strong>
                     {xp}
                   </strong>
@@ -1582,19 +1564,13 @@ function App() {
                   <p>
                     XP
                   </p>
-
                 </div>
-
               </div>
 
               <div className="stat-card">
-
-                <span>
-                  🔥
-                </span>
+                <span>🔥</span>
 
                 <div>
-
                   <strong>
                     {sequencia}
                   </strong>
@@ -1602,19 +1578,13 @@ function App() {
                   <p>
                     Dias seguidos
                   </p>
-
                 </div>
-
               </div>
 
               <div className="stat-card">
-
-                <span>
-                  🏆
-                </span>
+                <span>🏆</span>
 
                 <div>
-
                   <strong>
                     {conquistasDesbloqueadas}
                   </strong>
@@ -1622,9 +1592,7 @@ function App() {
                   <p>
                     Conquistas
                   </p>
-
                 </div>
-
               </div>
 
             </div>
@@ -2069,85 +2037,351 @@ function App() {
 
                 <div className="food-cards">
 
-                  <div className="food-card">
+                  {Number(idade) <= 10 && (
+                    <>
 
-                    <span className="food-icon">
-                      🌅
-                    </span>
+                      <div className="food-card">
 
-                    <div>
+                        <span className="food-icon">
+                          🌅
+                        </span>
 
-                      <h3>
-                        Café da manhã
-                      </h3>
+                        <div>
 
-                      <p>
-                        Frutas, cereais e uma fonte de proteína.
-                      </p>
+                          <h3>
+                            Café da manhã
+                          </h3>
 
-                    </div>
+                          <p>
+                            Frutas, cereais, leite ou outra opção variada para começar o dia.
+                          </p>
 
-                  </div>
+                        </div>
 
-                  <div className="food-card">
+                      </div>
 
-                    <span className="food-icon">
-                      🍛
-                    </span>
+                      <div className="food-card">
 
-                    <div>
+                        <span className="food-icon">
+                          🍛
+                        </span>
 
-                      <h3>
-                        Almoço
-                      </h3>
+                        <div>
 
-                      <p>
-                        Arroz, feijão, vegetais e uma fonte de proteína.
-                      </p>
+                          <h3>
+                            Almoço
+                          </h3>
 
-                    </div>
+                          <p>
+                            Arroz, feijão, verduras, legumes e uma fonte de proteína.
+                          </p>
 
-                  </div>
+                        </div>
 
-                  <div className="food-card">
+                      </div>
 
-                    <span className="food-icon">
-                      🍎
-                    </span>
+                      <div className="food-card">
 
-                    <div>
+                        <span className="food-icon">
+                          🍎
+                        </span>
 
-                      <h3>
-                        Lanche
-                      </h3>
+                        <div>
 
-                      <p>
-                        Fruta, iogurte ou outra combinação variada.
-                      </p>
+                          <h3>
+                            Lanche
+                          </h3>
 
-                    </div>
+                          <p>
+                            Frutas e outras opções variadas, de preferência junto da família.
+                          </p>
 
-                  </div>
+                        </div>
 
-                  <div className="food-card">
+                      </div>
 
-                    <span className="food-icon">
-                      🌙
-                    </span>
+                      <div className="food-card">
 
-                    <div>
+                        <span className="food-icon">
+                          🌙
+                        </span>
 
-                      <h3>
-                        Jantar
-                      </h3>
+                        <div>
 
-                      <p>
-                        Uma refeição variada com diferentes grupos de alimentos.
-                      </p>
+                          <h3>
+                            Jantar
+                          </h3>
 
-                    </div>
+                          <p>
+                            Uma refeição variada, com diferentes grupos de alimentos.
+                          </p>
 
-                  </div>
+                        </div>
+
+                      </div>
+
+                    </>
+                  )}
+
+                  {Number(idade) >= 11 &&
+                    Number(idade) <= 17 && (
+                    <>
+
+                      <div className="food-card">
+
+                        <span className="food-icon">
+                          🌅
+                        </span>
+
+                        <div>
+
+                          <h3>
+                            Café da manhã
+                          </h3>
+
+                          <p>
+                            Varie entre frutas, cereais e alimentos como leite, iogurte ou ovos.
+                          </p>
+
+                        </div>
+
+                      </div>
+
+                      <div className="food-card">
+
+                        <span className="food-icon">
+                          🍛
+                        </span>
+
+                        <div>
+
+                          <h3>
+                            Almoço
+                          </h3>
+
+                          <p>
+                            Priorize arroz, feijão, verduras, legumes e uma fonte de proteína.
+                          </p>
+
+                        </div>
+
+                      </div>
+
+                      <div className="food-card">
+
+                        <span className="food-icon">
+                          🍎
+                        </span>
+
+                        <div>
+
+                          <h3>
+                            Lanche
+                          </h3>
+
+                          <p>
+                            Frutas, iogurte, sanduíches ou outras opções variadas.
+                          </p>
+
+                        </div>
+
+                      </div>
+
+                      <div className="food-card">
+
+                        <span className="food-icon">
+                          🌙
+                        </span>
+
+                        <div>
+
+                          <h3>
+                            Jantar
+                          </h3>
+
+                          <p>
+                            Faça uma refeição variada e prefira alimentos in natura ou minimamente processados.
+                          </p>
+
+                        </div>
+
+                      </div>
+
+                    </>
+                  )}
+
+                  {Number(idade) >= 18 &&
+                    Number(idade) < 60 && (
+                    <>
+
+                      <div className="food-card">
+
+                        <span className="food-icon">
+                          🌅
+                        </span>
+
+                        <div>
+
+                          <h3>
+                            Café da manhã
+                          </h3>
+
+                          <p>
+                            Combine frutas, cereais e uma fonte de proteína em uma refeição variada.
+                          </p>
+
+                        </div>
+
+                      </div>
+
+                      <div className="food-card">
+
+                        <span className="food-icon">
+                          🍛
+                        </span>
+
+                        <div>
+
+                          <h3>
+                            Almoço
+                          </h3>
+
+                          <p>
+                            Priorize alimentos variados, como arroz, feijão, vegetais e proteínas.
+                          </p>
+
+                        </div>
+
+                      </div>
+
+                      <div className="food-card">
+
+                        <span className="food-icon">
+                          🍎
+                        </span>
+
+                        <div>
+
+                          <h3>
+                            Lanche
+                          </h3>
+
+                          <p>
+                            Escolha alimentos variados e prefira opções pouco processadas.
+                          </p>
+
+                        </div>
+
+                      </div>
+
+                      <div className="food-card">
+
+                        <span className="food-icon">
+                          🌙
+                        </span>
+
+                        <div>
+
+                          <h3>
+                            Jantar
+                          </h3>
+
+                          <p>
+                            Mantenha variedade de alimentos e priorize preparações caseiras.
+                          </p>
+
+                        </div>
+
+                      </div>
+
+                    </>
+                  )}
+
+                  {Number(idade) >= 60 && (
+                    <>
+
+                      <div className="food-card">
+
+                        <span className="food-icon">
+                          🌅
+                        </span>
+
+                        <div>
+
+                          <h3>
+                            Café da manhã
+                          </h3>
+
+                          <p>
+                            Procure uma refeição variada, com frutas e alimentos de diferentes grupos.
+                          </p>
+
+                        </div>
+
+                      </div>
+
+                      <div className="food-card">
+
+                        <span className="food-icon">
+                          🍛
+                        </span>
+
+                        <div>
+
+                          <h3>
+                            Almoço
+                          </h3>
+
+                          <p>
+                            Varie entre feijão, verduras, legumes e fontes de proteína.
+                          </p>
+
+                        </div>
+
+                      </div>
+
+                      <div className="food-card">
+
+                        <span className="food-icon">
+                          🍎
+                        </span>
+
+                        <div>
+
+                          <h3>
+                            Lanche
+                          </h3>
+
+                          <p>
+                            Frutas e outras opções variadas podem fazer parte da rotina.
+                          </p>
+
+                        </div>
+
+                      </div>
+
+                      <div className="food-card">
+
+                        <span className="food-icon">
+                          🌙
+                        </span>
+
+                        <div>
+
+                          <h3>
+                            Jantar
+                          </h3>
+
+                          <p>
+                            Prefira uma refeição variada e adequada às necessidades individuais.
+                          </p>
+
+                        </div>
+
+                      </div>
+
+                    </>
+                  )}
 
                 </div>
 
